@@ -25,7 +25,7 @@ class InternetProvider {
         Channel.CONFLATED).apply {
         //TODO: Check connection, if have not internet show "no intenet view"
 
-        Thread {
+        //Thread {
             val connection: HttpURLConnection = (url.openConnection() as HttpURLConnection).apply{
                 requestMethod = method
                 connectTimeout = timeout
@@ -51,7 +51,7 @@ class InternetProvider {
             finally {
                 connection.disconnect()
             }
-        }.start()
+        //}.start()
     }
 
 
