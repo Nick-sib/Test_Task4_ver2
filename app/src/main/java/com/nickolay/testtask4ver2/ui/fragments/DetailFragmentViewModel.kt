@@ -1,5 +1,6 @@
 package com.nickolay.testtask4ver2.ui.fragments
 
+import com.nickolay.testtask4ver2.data.DataProviderImpl
 import com.nickolay.testtask4ver2.ui.base.BaseViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

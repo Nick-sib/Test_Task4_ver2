@@ -10,11 +10,11 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-open class BaseViewModel<T> : ViewModel(), CoroutineScope {
+open class BaseViewModel<T> (val dataProvider: DataProvider = DataProviderImpl()): ViewModel(), CoroutineScope {
 
-    val dataProvider: DataProvider by lazy {
-        DataProviderImpl()
-    }
+//    val dataProvider: DataProvider by lazy {
+//        DataProviderImpl()
+//    }
 
     override val coroutineContext: CoroutineContext by lazy {
         Dispatchers.Default + Job()
