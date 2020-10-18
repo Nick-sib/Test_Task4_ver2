@@ -6,17 +6,18 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.nickolay.testtask4ver2.R
 import com.nickolay.testtask4ver2.data.roomdb.specialty.SpecialtyModel
-import com.nickolay.testtask4ver2.ui.adapters.SpecialtiesAdapter
+import com.nickolay.testtask4ver2.ui.adapters.SpecialtiesPageAdapter
 import com.nickolay.testtask4ver2.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 
+
 @ExperimentalCoroutinesApi
 @ObsoleteCoroutinesApi
-class MainActivity: BaseActivity<List<SpecialtyModel>>() {
+class MainActivity : BaseActivity<List<SpecialtyModel>>() {
 
-    val isLandscape: Boolean by lazy {
+    private val isLandscape: Boolean by lazy {
         resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     }
 
@@ -24,10 +25,12 @@ class MainActivity: BaseActivity<List<SpecialtyModel>>() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
+
     override fun renderData(data: List<SpecialtyModel>) {
         view_pager.adapter =
-            SpecialtiesAdapter(data, supportFragmentManager)
+            SpecialtiesPageAdapter(data, supportFragmentManager)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +38,17 @@ class MainActivity: BaseActivity<List<SpecialtyModel>>() {
         instance = this
 
         tabs.setupWithViewPager(view_pager)
-
     }
 
-    fun hide(){
+
+    fun hide() {
         //топорное решение хорошение решение требует переделать класс модел
         if (!isLandscape) {
             view_pager.visibility = View.GONE
             fContainer.visibility = View.VISIBLE
         }
     }
+
 
     override fun onBackPressed() {
         if (fContainer.visibility == View.GONE) {
@@ -53,15 +57,15 @@ class MainActivity: BaseActivity<List<SpecialtyModel>>() {
 
         if (isLandscape) {
             super.onBackPressed()
-        }
-        else {
+        } else {
             view_pager.visibility = View.VISIBLE
             fContainer.visibility = View.GONE
         }
     }
 
+
     companion object {
-        lateinit var instance : MainActivity
+        lateinit var instance: MainActivity
             private set
     }
 

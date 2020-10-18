@@ -1,19 +1,18 @@
 package com.nickolay.testtask4ver2.ui.base
 
 
-import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consumeEach
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-abstract class BaseFragment<T>: Fragment(), CoroutineScope {
+abstract class BaseFragment<T> : Fragment(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext by lazy {
         Dispatchers.Main + Job()
     }
-
 
     abstract val viewModel: BaseViewModel<T>
 
@@ -30,13 +29,13 @@ abstract class BaseFragment<T>: Fragment(), CoroutineScope {
             }
         }
 
-
-        errorJob = launch{
+        errorJob = launch {
             viewModel.getErrorChannel().consumeEach {
                 renderError(it)
             }
         }
     }
+
 
     override fun onStop() {
         dataJob.cancel()
@@ -47,15 +46,15 @@ abstract class BaseFragment<T>: Fragment(), CoroutineScope {
 
     abstract fun renderData(data: T)
 
-    private fun renderError(error: Throwable){
-         error.message ?.let {
-             showError(it)
-         }
+
+    private fun renderError(error: Throwable) {
+        error.message?.let {
+            showError(it)
+        }
     }
 
 
     private fun showError(message: String) {
-        Log.d("myLOG", "Fragment Error = $message")
-        //Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 }

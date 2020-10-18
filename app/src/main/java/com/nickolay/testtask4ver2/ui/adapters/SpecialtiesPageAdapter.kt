@@ -6,20 +6,13 @@ import com.nickolay.testtask4ver2.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask4ver2.ui.fragments.EmployeesFragment
 
 
-class SpecialtiesAdapter(
+class SpecialtiesPageAdapter(
     private val specialties: List<SpecialtyModel>,
-    fm: FragmentManager)
-    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    fm: FragmentManager
+) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-//    var specialties: List<SpecialtyModel> = listOf()
-//        set(value) {
-//            field = value
-//            notifyDataSetChanged()
-//        }
-
-    override fun getItem(position: Int)=
+    override fun getItem(position: Int) =
         EmployeesFragment.newInstance(specialties[position].specialtyId)
-
 
     override fun getPageTitle(position: Int) = specialties[position].specialtyName
 

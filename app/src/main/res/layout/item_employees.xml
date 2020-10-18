@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    >
+    android:layout_marginHorizontal="@dimen/recycler_item_horizontal_margin"
+    android:layout_marginVertical="@dimen/recycler_item_vertical_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,30 +15,24 @@
 
         <ImageView
             android:id="@+id/ivEmployees"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/recycler_item_image_size"
+            android:layout_height="@dimen/recycler_item_image_size"
             android:src="@drawable/ic_non_image_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/employe_photo_description"/>
+            android:contentDescription="@string/employee_photo_description"/>
 
         <TextView
             android:id="@+id/tvFName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp"
+            style="@style/recycler_item_text_dark"
 
-            android:layout_margin="10dp"
             app:layout_constraintStart_toEndOf="@+id/ivEmployees"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Name Name Name Name Name" />
 
         <TextView
             android:id="@+id/tvAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            style="@style/recycler_item_text_default"
 
             app:layout_constraintStart_toEndOf="@+id/ivEmployees"
             app:layout_constraintTop_toBottomOf="@+id/tvFName"

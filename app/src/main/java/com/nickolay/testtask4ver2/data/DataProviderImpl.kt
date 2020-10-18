@@ -12,9 +12,9 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-class DataProviderImpl: DataProvider {
+class DataProviderImpl : DataProvider {
 
-    val database: DbRoom by lazy {
+    private val database: DbRoom by lazy {
         DbRoom.getDatabase(App.instance)
     }
 
@@ -31,39 +31,39 @@ class DataProviderImpl: DataProvider {
     override fun addEmployee(f_name: String, l_name: String, birthday: String, avatr_url: String) =
         dbEmployees.insert(
             EmployeesModel(
-            f_name = f_name,
-            l_name = l_name,
-            birthday = birthday,
-            avatr_url = avatr_url
-        )
+                f_name = f_name,
+                l_name = l_name,
+                birthday = birthday,
+                avatr_url = avatr_url
+            )
         )
 
     override fun addSpecialty(specialtyId: Long, specialtyName: String) =
         dbSpecialty.insert(
             SpecialtyModel(
-            specialtyId, specialtyName
-        )
+                specialtyId, specialtyName
+            )
         )
 
     override fun addCrossData(employeeId: Long, specialtyId: Long) =
         dbCrossTab.insert(
             CrossTabModel(
                 specialtyId = specialtyId,
-                employeesId =  employeeId
+                employeesId = employeeId
             )
         )
 
-    override fun clearAllDatas(){
+    override fun clearAllData() {
         dbEmployees.deleteAll()
         dbSpecialty.deleteAll()
         dbCrossTab.deleteAll()
     }
 
-    override suspend fun getAllSpecialties():List<SpecialtyModel> = suspendCoroutine{
+    override suspend fun getAllSpecialties(): List<SpecialtyModel> = suspendCoroutine {
         it.resume(dbSpecialty.getSpecialty())
     }
 
-    override suspend fun getEmployeesById(id: Long): List<EmployeesModel> = suspendCoroutine{
+    override suspend fun getEmployeesById(id: Long): List<EmployeesModel> = suspendCoroutine {
         it.resume(dbEmployees.getEmployees(id))
     }
 

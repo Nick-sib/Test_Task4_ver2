@@ -6,13 +6,14 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class EmployeesViewModel: BaseViewModel<List<EmployeesModel>>() {
+class EmployeesViewModel : BaseViewModel<List<EmployeesModel>>() {
 
     var id: Long = 0
-    set(value) {
-        field = value
-        requestUser()
-    }
+        set(value) {
+            field = value
+            requestUser()
+        }
+
 
     private fun requestUser() = launch {
         dataProvider.getEmployeesById(id).also {

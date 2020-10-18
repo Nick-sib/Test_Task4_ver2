@@ -5,7 +5,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
-class DetailFragmentViewModel: BaseViewModel<List<String>>() {
+class DetailFragmentViewModel : BaseViewModel<List<String>>() {
 
     var id: Long? = 0
         set(value) {
@@ -17,11 +17,11 @@ class DetailFragmentViewModel: BaseViewModel<List<String>>() {
             field = value
         }
 
+
     private fun requestSpecialties(id: Long) = launch {
         dataProvider.getUserSpecialties(id).also {
             setData(it)
         }
     }
-
 
 }

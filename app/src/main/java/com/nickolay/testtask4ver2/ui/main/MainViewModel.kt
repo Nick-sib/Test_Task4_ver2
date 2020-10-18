@@ -1,8 +1,8 @@
 package com.nickolay.testtask4ver2.ui.main
 
-import androidx.annotation.VisibleForTesting
+
 import com.nickolay.testtask4ver2.data.entity.Employee
-import com.nickolay.testtask4ver2.data.model.DatasResult
+import com.nickolay.testtask4ver2.data.model.DataResult
 import com.nickolay.testtask4ver2.data.roomdb.specialty.SpecialtyModel
 import com.nickolay.testtask4ver2.dbDataFormat
 import com.nickolay.testtask4ver2.dbNameFormat
@@ -14,25 +14,27 @@ import kotlinx.coroutines.channels.consumeEach
 
 @ObsoleteCoroutinesApi
 @ExperimentalCoroutinesApi
-class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
+class MainViewModel : BaseViewModel<List<SpecialtyModel>>() {
 
     private var internetChanel = dataProvider.loadAllData()
+
 
     init {
         launch {
             internetChanel.consumeEach {
                 @Suppress("UNCHECKED_CAST")
                 when (it) {
-                    is DatasResult.Success<*> -> formatInternetDataToDb(it.data as List<Employee>)
-                    is DatasResult.Error -> loadRoomdata()//setError(it.error)
+                    is DataResult.Success<*> -> formatInternetDataToDb(it.data as List<Employee>)
+                    is DataResult.Error -> loadRoomdata()//setError(it.error)
                 }
             }
         }
     }
 
+
     private fun formatInternetDataToDb(data: List<Employee>) {
         //Можно показать сообщение что данные загружены и сохраняются на локальном устройстве
-        dataProvider.clearAllDatas()
+        dataProvider.clearAllData()
         data.forEach {
             val employeeId =
                 dataProvider.addEmployee(
@@ -49,7 +51,8 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
         loadRoomdata()
     }
 
-    fun loadRoomdata() = launch {
+
+    private fun loadRoomdata() = launch {
         val result = dataProvider.getAllSpecialties()
         if (result.isEmpty())
             setError(Throwable("EMPTY DATA"))
@@ -57,7 +60,6 @@ class MainViewModel: BaseViewModel<List<SpecialtyModel>>() {
             setData(result)
         }
     }
-
 
 
     public override fun onCleared() {

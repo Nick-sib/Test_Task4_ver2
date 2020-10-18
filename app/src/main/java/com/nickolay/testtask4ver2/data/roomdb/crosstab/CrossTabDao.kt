@@ -16,9 +16,11 @@ interface CrossTabDao {
     @Query("SELECT employeesId FROM cross_table WHERE specialtyId = :idSpecialty")
     fun getEmployees(idSpecialty: Long): List<Long>
 
-    @Query("SELECT specialty_table.specialtyName " +
-                 "FROM  cross_table INNER JOIN specialty_table ON cross_table.specialtyId = specialty_table.specialtyId " +
-                 "WHERE cross_table.employeesId = :idEmployee")
+    @Query(
+        "SELECT specialty_table.specialtyName " +
+              "FROM  cross_table INNER JOIN specialty_table ON cross_table.specialtyId = specialty_table.specialtyId " +
+              "WHERE cross_table.employeesId = :idEmployee"
+    )
     fun getUserSpecialties(idEmployee: Long): List<String>
 
 }

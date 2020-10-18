@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cross_table")
-data class CrossTabModel (
+data class CrossTabModel(
     @PrimaryKey(autoGenerate = true)
     val id: Long? = null,
     val employeesId: Long,

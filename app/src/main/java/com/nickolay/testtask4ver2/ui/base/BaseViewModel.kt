@@ -10,7 +10,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-open class BaseViewModel <T>: ViewModel(), CoroutineScope {
+open class BaseViewModel<T> : ViewModel(), CoroutineScope {
 
     val dataProvider: DataProvider by lazy {
         DataProviderImpl()
@@ -26,13 +26,14 @@ open class BaseViewModel <T>: ViewModel(), CoroutineScope {
 
     fun getData(): ReceiveChannel<T> = dataChannel.openSubscription()
 
-    fun getErrorChannel(): ReceiveChannel<Throwable> = errorChannel
 
+    fun getErrorChannel(): ReceiveChannel<Throwable> = errorChannel
 
 
     protected fun setData(data: T) = launch {
         dataChannel.send(data)
     }
+
 
     protected fun setError(e: Throwable) = launch {
         errorChannel.send(e)
@@ -41,7 +42,6 @@ open class BaseViewModel <T>: ViewModel(), CoroutineScope {
 
     override fun onCleared() {
         dataChannel.close()
-
         errorChannel.close()
         coroutineContext.cancel()
         super.onCleared()

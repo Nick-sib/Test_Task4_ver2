@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="employee_photo_description">Фото сотрудника</string>
+    <string name="standing_years_zero">менее года</string>
+    <string name="standing_years_one">%d год</string>
+    <string name="standing_years_two">%d года</string>
+    <string name="standing_years_few">%d года</string>
+    <string name="standing_years_many">%d лет</string>
+    <string name="standing_years_other">%d лет</string>
+</resources>

@@ -1,5 +1,23 @@
 <resources>
-    <string name="app_name">Test Task4 ver2</string>
+    <string name="app_name" translatable="false">Test Task4 ver2</string>
 
-    <string name="employe_photo_description">Employe photo</string>
+    <string name="employee_photo_description">Employee photo</string>
+    <string name="employee_full_name" translatable="false">%s %s</string>
+
+    <plurals name="employee_photo_standing">
+        <item quantity="zero">@string/standing_years_zero</item>
+        <item quantity="one">@string/standing_years_one</item>
+        <item quantity="two">@string/standing_years_two</item>
+        <item quantity="few">@string/standing_years_few</item>
+        <item quantity="many">@string/standing_years_many</item>
+        <item quantity="other">@string/standing_years_other</item>
+    </plurals>
+    <string name="standing_years_zero">one year less</string>
+    <string name="standing_years_one">%d year</string>
+    <string name="standing_years_two">%d years</string>
+    <string name="standing_years_few">%d years</string>
+    <string name="standing_years_many">%d years</string>
+    <string name="standing_years_other">%d years</string>
+
+
 </resources>

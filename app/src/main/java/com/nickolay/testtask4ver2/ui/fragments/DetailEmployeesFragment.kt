@@ -14,11 +14,12 @@ import kotlinx.android.synthetic.main.fragment_detail_employees.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
-class DetailEmployeesFragment: BaseFragment<List<String>>() {
+class DetailEmployeesFragment : BaseFragment<List<String>>() {
 
     override val viewModel: DetailFragmentViewModel by lazy {
         ViewModelProvider(this).get(DetailFragmentViewModel::class.java)
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,7 @@ class DetailEmployeesFragment: BaseFragment<List<String>>() {
             if (avatr_url.isNotBlank()) {
                 Picasso.get()
                     .load(avatr_url)
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.ic_non_image_24)
                     .error(R.drawable.ic_non_image_24)
                     .fit()
                     .into(root.ivEmployees)
@@ -46,8 +47,8 @@ class DetailEmployeesFragment: BaseFragment<List<String>>() {
         return root
     }
 
-    override fun renderData(data: List<String>) {
 
+    override fun renderData(data: List<String>) {
         tvSpecialties.text =
             data.toString()
                 .removePrefix("[")
@@ -65,9 +66,7 @@ class DetailEmployeesFragment: BaseFragment<List<String>>() {
                     putParcelable(EXTRA_DATA, employeeData)
                 }
             }
-
     }
-
 
 
 }

@@ -3,65 +3,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="18dp">
+    android:layout_margin="@dimen/fragment_margin">
 
     <ImageView
         android:id="@+id/ivEmployees"
-        android:layout_width="0dp"
-        android:layout_height="110dp"
-        android:contentDescription="@string/employe_photo_description"
-        android:padding="10dp"
+        android:layout_width="@dimen/fragment_image_size"
+        android:layout_height="@dimen/fragment_image_size"
+        android:contentDescription="@string/employee_photo_description"
+        android:padding="@dimen/def_item_margin"
         android:src="@drawable/ic_non_image_24"
+        app:layout_constraintBottom_toTopOf="@+id/tvFName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvFName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
-        android:textColor="@color/cardview_dark_background"
+        style="@style/fragment_item_text_dark"
 
-        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivEmployees"
         tools:text="Name" />
 
     <TextView
         android:id="@+id/tvLName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
-        android:textColor="@color/cardview_dark_background"
+        style="@style/fragment_item_text_dark"
 
-        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvBirthday"
         app:layout_constraintStart_toStartOf="@+id/tvFName"
-        app:layout_constraintTop_toBottomOf="@+id/tvFName"
-        tools:text="LName"/>
+        tools:text="LName" />
 
     <TextView
         android:id="@+id/tvBirthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
+        style="@style/fragment_item_text_default"
 
+        app:layout_constraintBottom_toTopOf="@+id/tvSpecialties"
         app:layout_constraintStart_toStartOf="@+id/tvFName"
-        app:layout_constraintTop_toBottomOf="@+id/tvLName"
         tools:text="100 лет" />
 
     <TextView
         android:id="@+id/tvSpecialties"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
+        style="@style/fragment_item_text_default"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvFName"
-        app:layout_constraintTop_toBottomOf="@+id/tvBirthday"
         tools:text="Specialties, Specialties" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
